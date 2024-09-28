@@ -2,12 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("home");
+Route::view('/', 'posts.index')->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-})->name("about");
+Route::view('/register', 'auth.register')->name('register');
 
-
+Route::post('/register', 'AuthController@register');
