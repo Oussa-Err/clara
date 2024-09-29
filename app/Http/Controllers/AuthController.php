@@ -31,6 +31,19 @@ class AuthController extends Controller
 
     public function login(Request $request, Response $response)
     {
+        //validate
+        $fields = $request->validate([
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required'],
+        ]);
+        
+        //login
+        if (!Auth::attempt($fields, $request->remember)) {
+            return redirect()->back()->withErrors(['failed' => 'Invalid credentials']);
+        }
+
+        //Redirect
+        return redirect()->route('home');
 
     }
 
