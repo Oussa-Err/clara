@@ -6,22 +6,52 @@
 
             <div class="mb-4">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="input" required>
+                <input type="text" id="username" name="username"
+                    class="input
+                @error('username') ring-red-500 @enderror
+                "
+                    value={{ old('username') }}>
+                @error('username')
+                    <p class="error">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="email">email:</label>
-                <input type="text" id="email" name="email" class="input" required>
+                <input type="text" id="email" name="email"
+                    class="input
+                @error('email') ring-red-500 @enderror
+                "
+                    value={{ old('email') }}>
+                @error('email')
+                    <p class="error">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="password">password:</label>
-                <input type="text" id="password" name="password" class="input" required>
+                <input type="password" id="password" name="password"
+                    class="input
+                @error('password') ring-red-500 @enderror
+                "
+                    value={{ old('password') }}>
+                @error('password')
+                    <p class="error">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="password_confirmation">Confirm password:</label>
-                <input type="text" id="password" name="password_confirmation" class="input" required>
+                <input type="password" id="password" name="password_confirmation"
+                    class="input
+                @error('password') ring-red-500 @enderror
+                ">
             </div>
 
             <button type="submit" class="primary-btn">Register</button>
