@@ -39,12 +39,11 @@ class AuthController extends Controller
         
         //login
         if (!Auth::attempt($fields, $request->remember)) {
-            return redirect()->back()->withErrors(['failed' => 'Invalid credentials']);
+            return back()->withErrors(['failed' => 'Invalid credentials']);
         }
 
         //Redirect
-        return redirect()->route('home');
-
+        return redirect()->intended();
     }
 
     public function logout(Request $request)
