@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
 class AuthController extends Controller
 {
+
     public function register(Request $request, Response $response)
     {
         //validate
@@ -36,14 +38,14 @@ class AuthController extends Controller
             'email' => ['required', 'email', 'max:255'],
             'password' => ['required'],
         ]);
-        
+
         //login
         if (!Auth::attempt($fields, $request->remember)) {
             return back()->withErrors(['failed' => 'Invalid credentials']);
         }
 
         //Redirect
-        return redirect()->intended();
+        return redirect()->intended('dashboard');
     }
 
     public function logout(Request $request)

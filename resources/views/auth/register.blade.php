@@ -1,6 +1,6 @@
 <x-layout>
+    <h1 class="title text-left">Register Now</h1>
     <div class="max-w-screen-sm mx-auto card">
-        <h1 class="title">Register Now</h1>
         <form action={{ route('register') }} method="POST">
             @csrf
 
