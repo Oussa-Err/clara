@@ -48,7 +48,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $user = User::where('username', '=', $request->usename);
-        $user->update(['logged_in' => false]);
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

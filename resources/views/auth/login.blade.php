@@ -1,5 +1,6 @@
 <x-layout>
     <div class="max-w-screen-sm mx-auto card">
+        <h1 class="title">Login</h1>
         <form action={{ route('login') }} method="POST">
             @csrf
             <div class="mb-4">
