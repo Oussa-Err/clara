@@ -6,7 +6,7 @@
     <div class="text-xs font-light mb-4">
         {{-- using Carbon nesbot for date formating --}}
         <span>Posted {{ $post->created_at->diffForHumans() }} BY</span>
-        <a href="#" class="text-blue-500 font-medium">username</a>
+        <a href={{ route('posts') }} class="text-blue-500 font-medium">{{ $post->user->username }}</a>
     </div>
     <div class="text-sm">
         <p>{{ Str::words($post->body, 15, '...') }}</p>

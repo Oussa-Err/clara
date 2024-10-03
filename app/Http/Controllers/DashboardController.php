@@ -7,9 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $posts = Auth::user()->posts()->latest()->paginate(6);
         // dd($posts);
         return view('users.dashboard', ["posts" => $posts]);
+    }
+
+    public function userPosts()
+    {
+        return view('users.posts');
     }
 }
