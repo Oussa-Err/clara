@@ -23,10 +23,10 @@
                         class="top-10 right-0 overflow-hidden shadow-lg font-light absolute rounded-lg bg-white">
                         <p class="text-sm pl-4 pr-8 py-2 mb-1">{{ auth()->user()->username }}</p>
                         <a href="{{ route('dashboard') }}"
-                            class="font-semibold block hover:bg-slate-200 pl-4 pr-8 py-2 mb-1 text-lg">Dashboard</a>
+                            class="font-semibold block hover:bg-slate-200 pl-4 pr-8 py-2 mb-1 ">Dashboard</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="font-semibold block w-full hover:bg-slate-200 pl-4 pr-8 py-2 mb-1 text-lg">Logout</button>
+                            <button class="font-semibold block text-left w-full hover:bg-slate-200 pl-4 pr-8 py-2 mb-1">Logout</button>
                         </form>
                     </div>
                 </div>
