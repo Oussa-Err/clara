@@ -1,6 +1,14 @@
 <x-layout>
     <h1 class="title">Hello {{ auth()->user()->username }}</h1>
     <div class="card mb-4">
+
+
+        @if (session('success'))
+            <div class="mb-2">
+                <x-flashMsg msg="{{ session('success') }}" bg="bg-yellow-500" />
+            </div>
+        @endif
+
         <h2 class="font-bold mb-4">Create new Post</h2>
         <form action={{ route('posts.store') }} method="POST">
             @csrf
@@ -27,4 +35,24 @@
             <button class="primary-btn">Post blog</button>
         </form>
     </div>
+    <h1 class="title">your latest post</h1>
+    <div class="grid grid-cols-2 gap-4">
+        @foreach ($posts as $post)
+            <div class="card">
+                <h2 class="font-bold text-xl">
+                    {{ $post->title }}
+                </h2>
+                <div class="text-xs font-light mb-4">
+                    {{-- using Carbon nesbot for date formating --}}
+                    <span>Posted {{ $post->created_at->diffForHumans() }}</span>
+                </div>
+                <div class="text-sm">
+                    <p>{{ Str::words($post->body, 15, '...') }}</p>
+                    {{-- alternatively --}}
+                    {{-- <p>{{ substr($post->body, 0, 100 )}}...</p> --}}
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <div>{{ $posts->links() }}</div>
 </x-layout>

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 
-Route::redirect('/', 'posts');
+Route::redirect('/', 'posts')->name('home');
 Route::resource('/posts', PostController::class);
 
 Route::middleware('auth')->group(function () {

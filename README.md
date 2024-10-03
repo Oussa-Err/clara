@@ -1,1 +1,1 @@
-# my blog
+# developers blog platform
