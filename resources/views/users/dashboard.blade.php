@@ -35,7 +35,7 @@
             <button class="primary-btn">Post blog</button>
         </form>
     </div>
-    <h1 class="title">your latest post</h1>
+    <h1 class="title">Your latest post</h1>
     <div class="grid grid-cols-2 gap-4">
         @foreach ($posts as $post)
             <x-postCard :post="$post" />

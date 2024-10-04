@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -14,8 +15,9 @@ class DashboardController extends Controller
         return view('users.dashboard', ["posts" => $posts]);
     }
 
-    public function userPosts()
+    public function userPosts(User $user)
     {
-        return view('users.posts');
+        $userPost = $user->posts()->latest()->paginate(6);
+        return view('users.posts', ['posts' => $userPost, 'user' => $user]);
     }
 }

@@ -10,7 +10,9 @@ Route::redirect('/', 'posts')->name('home');
 
 Route::resource('/posts', PostController::class);
 
-Route::get('/{user}/posts', [DashboardController::class, 'userPosts'])->name('posts');
+Route::get('/{user}/posts', [DashboardController::class, 'userPosts'])->name('posts.user');
+
+Route::get('posts/{post}', [PostController::class, "show"])->name('post');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

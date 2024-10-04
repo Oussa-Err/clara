@@ -14,7 +14,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(10);
-        // dd($posts); 
         // alternatively
         // $posts = Post::orderBy('date', 'desc');
 
@@ -50,11 +49,11 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the post
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.post', ["post" => $post]);
     }
 
     /**
