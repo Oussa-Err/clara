@@ -1,15 +1,14 @@
 <x-layout>
-    <h1 class="title">Hello {{ auth()->user()->username }}</h1>
+    <h1 class="title">Welcome&nbsp;{{ auth()->user()->username }}, <span class="text-sm">You have&nbsp;
+            {{ $posts->total() }}&nbsp;posts</span>
+    </h1>
     <div class="card mb-4">
-
-
         @if (session('success'))
-            <div class="mb-2">
-                <x-flashMsg msg="{{ session('success') }}" bg="bg-yellow-500" />
-            </div>
+            <x-flashMsg msg="{{ session('success') }}" bg="bg-yellow-500" />
+        @elseif (session('delete'))
+            <x-flashMsg msg="{{ session('delete') }}" bg="bg-red-500" />
         @endif
-
-        <h2 class="font-bold mb-4">Create new Post</h2>
+        <h2 class="font-bold mb-4 title">Create new Post</h2>
         <form action={{ route('posts.store') }} method="POST">
             @csrf
             <div class="mb-4">
@@ -36,9 +35,17 @@
         </form>
     </div>
     <h1 class="title">Your latest post</h1>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-6 justify-end">
         @foreach ($posts as $post)
-            <x-postCard :post="$post" />
+            <x-postCard :post="$post">
+                <form class="grid justify-end" action={{ route('posts.destroy', $post) }} method="post">
+                    @csrf
+                    {{-- method spoofing --}}
+                    @method('DELETE')
+                    <button class="bg-red-500 text-white px-2 py-1 text-xs rounded-md mb-2">Delete</button>
+                    <button class="bg-blue-500 text-white px-2 py-1 text-xs rounded-md">edit</button>
+                </form>
+            </x-postCard>
         @endforeach
     </div>
     <div>{{ $posts->links() }}</div>
