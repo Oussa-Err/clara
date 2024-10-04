@@ -53,7 +53,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.post', ["post" => $post]);
+        return view('posts.show', ["post" => $post]);
     }
 
     /**
@@ -61,7 +61,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ["post" => $post]);
     }
 
     /**
@@ -69,7 +69,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $fields = $request->validate([
+            "title" => ["required", "max:255"],
+            "body" => ["required"]
+        ]);
+        $post->update($fields);
+
+        return redirect('/dashboard')->with('success', 'Your post has been updated');
     }
 
     /**
@@ -79,6 +85,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return back()->with('deleted', 'your post was deleted!');
+        return back()->with('delete', 'your post was deleted!');
     }
 }

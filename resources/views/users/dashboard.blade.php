@@ -38,12 +38,14 @@
     <div class="grid grid-cols-2 gap-6 justify-end">
         @foreach ($posts as $post)
             <x-postCard :post="$post">
+                <a href="{{ route('posts.edit', $post) }}"
+                    class="bg-green-500 text-white px-2 py-1 text-xs rounded-md">Update</a>
+
                 <form class="grid justify-end" action={{ route('posts.destroy', $post) }} method="post">
                     @csrf
                     {{-- method spoofing --}}
                     @method('DELETE')
                     <button class="bg-red-500 text-white px-2 py-1 text-xs rounded-md mb-2">Delete</button>
-                    <button class="bg-blue-500 text-white px-2 py-1 text-xs rounded-md">edit</button>
                 </form>
             </x-postCard>
         @endforeach
