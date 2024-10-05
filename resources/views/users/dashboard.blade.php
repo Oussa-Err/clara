@@ -37,18 +37,19 @@
         </form>
     </div>
     <h1 class="title">Your latest post</h1>
-    <div class="grid grid-cols-2 gap-6 justify-end">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-end">
         @foreach ($posts as $post)
             <x-postCard :post="$post">
-                <a href="{{ route('posts.edit', $post) }}"
-                    class="bg-green-500 text-white px-2 py-1 text-xs rounded-md">Update</a>
-
-                <form action={{ route('posts.destroy', $post) }} method="post">
-                    @csrf
-                    {{-- method spoofing --}}
-                    @method('DELETE')
-                    <button class="bg-red-500 text-white px-2 py-1 text-xs w-full rounded-md">Delete</button>
-                </form>
+                <div class="flex justify-end gap-2 mt-2">
+                    <a href="{{ route('posts.edit', $post) }}"
+                        class="bg-green-500 text-white px-2 py-1 text-xs rounded-md">Update</a>
+                    <form action={{ route('posts.destroy', $post) }} method="post">
+                        @csrf
+                        {{-- method spoofing --}}
+                        @method('DELETE')
+                        <button class="bg-red-500 text-white px-2 py-1 text-xs w-full rounded-md">Delete</button>
+                    </form>
+                </div>
             </x-postCard>
         @endforeach
     </div>
