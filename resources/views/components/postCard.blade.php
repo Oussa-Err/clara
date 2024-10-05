@@ -22,7 +22,7 @@
         </div>
     @endif
 
-    <div>
+    <div class="grid justify-end gap-1 mt-1">
         {{ $slot }}
     </div>
 </div>

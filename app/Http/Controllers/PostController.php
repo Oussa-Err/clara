@@ -29,7 +29,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created blog in storage.
      */
     public function store(Request $request)
     {
@@ -49,7 +49,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the post
+     * Display the blog
      */
     public function show(Post $post)
     {
@@ -57,7 +57,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the page to edit the blog.
      */
     public function edit(Post $post)
     {
@@ -65,7 +65,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified blog in storage.
      */
     public function update(Request $request, Post $post)
     {
@@ -75,11 +75,11 @@ class PostController extends Controller
         ]);
         $post->update($fields);
 
-        return redirect('/dashboard')->with('success', 'Your post has been updated');
+        return redirect()->route('dashboard')->with('update', 'Your post has been updated');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified blog from storage.
      */
     public function destroy(Post $post)
     {

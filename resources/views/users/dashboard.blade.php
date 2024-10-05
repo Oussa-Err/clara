@@ -4,9 +4,11 @@
     </h1>
     <div class="card mb-4">
         @if (session('success'))
-            <x-flashMsg msg="{{ session('success') }}" bg="bg-yellow-500" />
+            <x-flashMsg msg="{{ session('success') }}" bg="bg-green-500" />
         @elseif (session('delete'))
             <x-flashMsg msg="{{ session('delete') }}" bg="bg-red-500" />
+        @elseif (session('update'))
+            <x-flashMsg msg="{{ session('update') }}" bg="bg-yellow-500" />
         @endif
         <h2 class="font-bold mb-4 title">Create new Post</h2>
         <form action={{ route('posts.store') }} method="POST">
@@ -41,11 +43,11 @@
                 <a href="{{ route('posts.edit', $post) }}"
                     class="bg-green-500 text-white px-2 py-1 text-xs rounded-md">Update</a>
 
-                <form class="grid justify-end" action={{ route('posts.destroy', $post) }} method="post">
+                <form action={{ route('posts.destroy', $post) }} method="post">
                     @csrf
                     {{-- method spoofing --}}
                     @method('DELETE')
-                    <button class="bg-red-500 text-white px-2 py-1 text-xs rounded-md mb-2">Delete</button>
+                    <button class="bg-red-500 text-white px-2 py-1 text-xs w-full rounded-md">Delete</button>
                 </form>
             </x-postCard>
         @endforeach
