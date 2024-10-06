@@ -33,6 +33,8 @@
                     @enderror
                 </p>
             </div>
+            <label for="file"></label>
+            <input type="file">
             <button class="primary-btn">Post blog</button>
         </form>
     </div>
