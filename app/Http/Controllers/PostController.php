@@ -8,6 +8,7 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller implements HasMiddleware
 {
@@ -45,16 +46,29 @@ class PostController extends Controller implements HasMiddleware
     {
         // we won't need Gate to check ownernship because auth middleware is present
 
+
+
         // validate
-        $fields = $request->validate(
+        $request->validate(
             [
+                "image" => ['nullable', "max:3000", "mimes:png,jpg,jpeg,webp"],
                 "title" => ['required', 'max:255'],
                 "body" => ["required"]
             ]
         );
 
-        // create
-        Auth::user()->posts()->create($fields);
+        // Store Image if exists
+        $path = null;
+        if ($request->hasFile('image')) {
+            $path = Storage::disk('public')->put('blog_images', $request->image);
+        }
+
+        // create the blog
+        Auth::user()->posts()->create([
+            "image" => $path,
+            "title" => $request->title,
+            "body" => $request->body
+        ]);
 
         // redirect with success message
         return back()->with('success', 'Your post was created');
@@ -78,6 +92,8 @@ class PostController extends Controller implements HasMiddleware
     {
         // use modify policy to check owner
         Gate::authorize('modify', $post);
+        Storage::put('blog_images', $request->image);
+        dd('ok');
 
         // Validate
         $fields = $request->validate([

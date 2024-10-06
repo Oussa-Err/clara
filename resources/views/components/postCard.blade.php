@@ -3,6 +3,9 @@
     <h2 class="font-bold text-xl">
         {{ $post->title }}
     </h2>
+    <div>
+        <img  class="" src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+    </div>
     <div class="text-xs font-light mb-4">
         {{-- using Carbon nesbot for date formating --}}
         <span>Posted {{ $post->created_at->diffForHumans() }} BY</span>

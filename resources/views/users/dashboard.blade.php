@@ -11,7 +11,7 @@
             <x-flashMsg msg="{{ session('update') }}" bg="bg-yellow-500" />
         @endif
         <h2 class="font-bold mb-4 title">Create new Post</h2>
-        <form action={{ route('posts.store') }} method="POST">
+        <form action={{ route('posts.store') }} method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="title">Title</label>
@@ -33,8 +33,16 @@
                     @enderror
                 </p>
             </div>
-            <label for="file"></label>
-            <input type="file">
+            <div class="mb-4">
+                <label for="image">Cover photo</label>
+                <input type="file" name="image" id="image" value="{{ old('image') }}"
+                    class="input @error('body') ring-red-400 @enderror">
+                <p class="error">
+                    @error('image')
+                        {{ $message }}
+                    @enderror
+                </p>
+            </div>
             <button class="primary-btn">Post blog</button>
         </form>
     </div>

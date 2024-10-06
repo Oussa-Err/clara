@@ -20,6 +20,7 @@ class PostFactory extends Factory
             "user_id" => 1,
             "title" => fake()->sentence(6),
             "body" => fake()->paragraph(20),
+            "image" => fake()->image('public/storage/blog_images', 640, 480)
         ];
     }
 }
