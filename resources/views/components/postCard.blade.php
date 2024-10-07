@@ -4,7 +4,11 @@
         {{ $post->title }}
     </h2>
     <div>
-        <img  class="" src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+        @if ($post->image)
+            <img src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+        @else
+            <img src="{{ asset('storage/blog_images/default.png') }}" alt="blog image">
+        @endif
     </div>
     <div class="text-xs font-light mb-4">
         {{-- using Carbon nesbot for date formating --}}
