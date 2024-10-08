@@ -27,12 +27,13 @@
                 </p>
             </div>
             @if ($post->image)
-                <label>Current cover photo</label>
-                <img width="500" height="600" class="h-auto max-w-full rounded-lg"
-                    src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+                <div class="flex flex-col mb-2">
+                    <label>Current cover photo</label>
+                    <img class="h-auto w-1/2 self-center rounded-lg"
+                        src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+                </div>
             @endif
             <div class="mb-4">
-                <label for="image">cover photo</label>
                 <input type="file" name="image" id="image" value="{{ old('image') }}"
                     class="input @error('image') ring-red-400 @enderror">
                 <p class="error">

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomMail;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller implements HasMiddleware
@@ -24,6 +26,8 @@ class PostController extends Controller implements HasMiddleware
      */
     public function index()
     {
+        Mail::to('mike@email.com')->send(new WelcomMail(Auth::user()));
+
         $posts = Post::latest()->paginate(10);
         // alternatively
         // $posts = Post::orderBy('date', 'desc');
