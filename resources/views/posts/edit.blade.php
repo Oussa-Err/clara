@@ -2,7 +2,7 @@
     <a href="/dashboard" class="text-link text-sm">&larr;Go back to your dashboard</a>
     <div class="card">
         <h2 class="font-bold mb-4 title">Edit your Post</h2>
-        <form action={{ route('posts.update', $post) }} method="POST">
+        <form action={{ route('posts.update', $post) }} method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -19,9 +19,24 @@
 
             <div class="mb-4">
                 <label for="body">Post Content</label>
-                <textarea name="body" rows="20" class="input @error('body') ring-red-400 @enderror">{{ $post->body }}</textarea>
+                <textarea name="body" rows="5" class="input @error('body') ring-red-400 @enderror">{{ $post->body }}</textarea>
                 <p class="error">
                     @error('body')
+                        {{ $message }}
+                    @enderror
+                </p>
+            </div>
+            @if ($post->image)
+                <label>Current cover photo</label>
+                <img width="500" height="600" class="h-auto max-w-full rounded-lg"
+                    src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+            @endif
+            <div class="mb-4">
+                <label for="image">cover photo</label>
+                <input type="file" name="image" id="image" value="{{ old('image') }}"
+                    class="input @error('image') ring-red-400 @enderror">
+                <p class="error">
+                    @error('image')
                         {{ $message }}
                     @enderror
                 </p>

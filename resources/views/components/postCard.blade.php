@@ -5,9 +5,10 @@
     </h2>
     <div>
         @if ($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="blog image">
+            <img width="500" height="600" class="h-auto max-w-full rounded-lg" src="{{ asset('storage/' . $post->image) }}" alt="blog image">
         @else
-            <img src="{{ asset('storage/blog_images/default.png') }}" alt="blog image">
+            <img class="h-auto max-w-full rounded-lg" src="{{ asset('storage/blog_images/default.png') }}"
+                alt="blog image">
         @endif
     </div>
     <div class="text-xs font-light mb-4">

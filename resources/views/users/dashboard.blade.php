@@ -36,7 +36,7 @@
             <div class="mb-4">
                 <label for="image">Cover photo</label>
                 <input type="file" name="image" id="image" value="{{ old('image') }}"
-                    class="input @error('body') ring-red-400 @enderror">
+                    class="input @error('image') ring-red-400 @enderror">
                 <p class="error">
                     @error('image')
                         {{ $message }}
