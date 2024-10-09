@@ -72,7 +72,8 @@ class PostController extends Controller implements HasMiddleware
 
         // Send email for confirmation of creating blog
         Mail::to('mike@email.com')->send(mailable: new WelcomMail(Auth::user(), $post));
-
+        
+        
         // Redirect with success message
         return back()->with('success', 'Your post was created');
     }

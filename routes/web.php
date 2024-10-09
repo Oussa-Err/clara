@@ -12,6 +12,10 @@ Route::resource('/posts', PostController::class);
 
 Route::get('/{user}/posts', [DashboardController::class, 'userPosts'])->name('posts.user');
 
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

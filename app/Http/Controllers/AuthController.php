@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,9 @@ class AuthController extends Controller
 
         //Login
         Auth::login($user);
+
+        //Verify user
+        event(new Registered($user));
 
         //Redirect
         return redirect()->route('home');
