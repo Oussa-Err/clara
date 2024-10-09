@@ -26,17 +26,17 @@
 
             <div class="mb-4">
                 <label for="body">Post Content</label>
-                <textarea name="body" rows="5" class="input @error('body') ring-red-400 @enderror">{{ old('body') }}</textarea>
+                <textarea name="body" rows="5" class="focus:ring-offset-0 @error('body') ring-red-400 @enderror">{{ old('body') }}</textarea>
                 <p class="error">
                     @error('body')
                         {{ $message }}
                     @enderror
                 </p>
             </div>
-            <div class="mb-4">
+            <div class="md:inline-flex w-full mb-4">
                 <label for="image">Cover photo</label>
                 <input type="file" name="image" id="image" value="{{ old('image') }}"
-                    class="input @error('image') ring-red-400 @enderror">
+                    class="focus:ring-offset-0 @error('image') ring-red-400 @enderror">
                 <p class="error">
                     @error('image')
                         {{ $message }}

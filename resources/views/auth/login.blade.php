@@ -31,11 +31,11 @@
                 @enderror
             </div>
 
-            <div class="mb-4 inline-flex gap-2">
-                <input type="checkbox" name="remember" id='remember' class=" w-fit"></input>
-                <label for="remember">Remember me</label>
+            <div class="mb-4 inline-flex gap-2 h-fit">
+                <input type="checkbox" name="remember" id='remember'
+                    class="focus:outline-none focus-visible:outline-none w-fit self-center" />
+                <label for="remember" class="inline-flex">Remember me</label>
             </div>
-
             @error('failed')
                 <p class="error">
                     {{ $message }}

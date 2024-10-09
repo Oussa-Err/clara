@@ -26,8 +26,6 @@ class PostController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        Mail::to('mike@email.com')->send(new WelcomMail(Auth::user()));
-
         $posts = Post::latest()->paginate(10);
         // alternatively
         // $posts = Post::orderBy('date', 'desc');
@@ -66,11 +64,14 @@ class PostController extends Controller implements HasMiddleware
         }
 
         // Create the blog
-        Auth::user()->posts()->create([
+        $post = Auth::user()->posts()->create([
             "image" => $path,
             "title" => $request->title,
             "body" => $request->body
         ]);
+
+        // Send email for confirmation of creating blog
+        Mail::to('mike@email.com')->send(mailable: new WelcomMail(Auth::user(), $post));
 
         // Redirect with success message
         return back()->with('success', 'Your post was created');
