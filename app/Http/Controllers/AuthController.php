@@ -32,7 +32,7 @@ class AuthController extends Controller
         event(new Registered($user));
 
         //Redirect
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
 
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
     public function verifyEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect('/dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function verifyNotification(Request $request)

@@ -17,7 +17,7 @@ class PostController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('auth', except: ['show', 'index']),
+            new Middleware(['auth', 'verified'], except: ['show', 'index']),
         ];
     }
 
@@ -72,8 +72,8 @@ class PostController extends Controller implements HasMiddleware
 
         // Send email for confirmation of creating blog
         Mail::to('mike@email.com')->send(mailable: new WelcomMail(Auth::user(), $post));
-        
-        
+
+
         // Redirect with success message
         return back()->with('success', 'Your post was created');
     }

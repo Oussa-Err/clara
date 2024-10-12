@@ -19,7 +19,7 @@ Route::get('/{user}/posts', [DashboardController::class, 'userPosts'])->name('po
 Route::middleware('auth')->group(function () {
 
     // view dashboard page
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('dashboard');
 
     // logout user
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
