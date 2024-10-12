@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserSubscribed;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -22,14 +23,21 @@ class AuthController extends Controller
             'password' => ['min:8', 'confirmed'],
         ]);
 
+
         //Register
         $user = User::create($fields);
 
         //Login
         Auth::login($user);
 
-        //Verify user
+        //Verify user using the built-in registered event 
         event(new Registered($user));
+
+        //check if subscribe is checked
+        if ($request->subscribe) {
+            // send thank you email
+            event(new UserSubscribed($user));
+        }
 
         //Redirect
         return redirect()->route('dashboard');

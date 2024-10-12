@@ -43,6 +43,20 @@
                     class="input @error('password') ring-red-500 @enderror">
             </div>
 
+            <div>
+
+                <div class="mb-4 inline-flex gap-2 h-fit">
+                    <input type="checkbox" name="subscribe" id='subscribe'
+                        class="focus:outline-none focus-visible:outline-none w-fit self-center" />
+                    <label for="subscribe" class="inline-flex">Subscribe to our newsletter</label>
+                </div>
+                @error('subscribe')
+                    <p class="error">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
             <button type="submit" class="primary-btn">Register</button>
         </form>
     </div>
