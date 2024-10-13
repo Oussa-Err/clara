@@ -42,6 +42,7 @@
                 </p>
             @enderror
 
+            <a href="{{ route('password.request') }}" class="text-link">reset password</a>
             <button type="submit" class="primary-btn">Login</button>
         </form>
     </div>
