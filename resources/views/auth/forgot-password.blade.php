@@ -2,10 +2,8 @@
     <h1 class="title">Reset your password</h1>
     <div class="max-w-screen-sm mx-auto card">
 
-        @if (session('success'))
-            <x-flashMsg msg="{{ session('success') }}" bg="bg-green-500" />
-        @elseif (session('failed'))
-            <x-flashMsg msg="{{ session('delete') }}" bg="bg-red-500" />
+        @if (session('status'))
+            <x-flashMsg msg="{{ session('status') }}" />
         @endif
 
         <form action="{{ route('password.email') }}" method="POST">

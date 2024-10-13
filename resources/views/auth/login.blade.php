@@ -1,6 +1,10 @@
 <x-layout>
     <h1 class="title text-left">Login</h1>
     <div class="max-w-screen-sm mx-auto card">
+        @if (session('status'))
+            <x-flashMsg msg="{{ session('status') }}" />
+        @endif
+        
         <form action={{ route('login') }} method="POST">
             @csrf
             <div class="mb-4">

@@ -60,7 +60,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/forgot-password', [ResetPasswordController::class, 'passwordEmail'])->name('password.email');
 
     // route to reset password token
-    Route::get('/reset-password/{token}', [ResetPasswordController::class, ''])->middleware('guest')->name('password.reset');
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'passwordReset'])->middleware('guest')->name('password.reset');
 
     Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
 });
