@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="title text-left">Register Now</h1>
+    <h1 class="title text-left">Create new password</h1>
     <div class="max-w-screen-sm mx-auto card">
         <form action={{ route('password.update') }} method="POST">
             @csrf

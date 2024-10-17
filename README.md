@@ -4,7 +4,10 @@ This is a learning project where I built a basic blog application from scratch i
 
 ![dashboard Screenshot](public/image.png)
 ![Home Screenshot](public/imageCopy.png)
-![Login Screenshot](public/imageCopy2.png)
+![Login Screenshot](public/image_emailVerif.png)
+![Login Screenshot](public/image_register.png)
+![Login Screenshot](public/image_resetLink.png)
+![Login Screenshot](public/image_ResetPwd.png)
 
 ## Features
 
